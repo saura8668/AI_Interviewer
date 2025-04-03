@@ -1,0 +1,34 @@
+# Virtual environment
+AI_Interviewer/bin/
+AI_Interviewer/lib/
+AI_Interviewer/include/
+AI_Interviewer/pyvenv.cfg
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment variables
+.env
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# IDE/Editor-specific files
+.vscode/
+.idea/
+
+# pip cache
+*.egg-info/
+*.eggs/
+
+# Database files
+*.db
+*.sqlite3
+
+# OS-specific files
+.DS_Store
+Thumbs.db
