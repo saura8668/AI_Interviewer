@@ -40,7 +40,7 @@ async def fetchQuestion(request: FirstQuestionRequestSchema | QuestionRequestSch
 
     # Create a Question instance
     question = Question(
-        userID="12345",  # Replace with actual user ID if available
+        userID=request.userID,  # Replace with actual user ID if available
         question=question_text,
         answer="",
         score=0.0
