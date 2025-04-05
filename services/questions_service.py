@@ -9,7 +9,7 @@ async def fetchQuestion(request: FirstQuestionRequestSchema | QuestionRequestSch
 
     if id == "0":  # Assuming "0" indicates generating a new question
         if isinstance(request, FirstQuestionRequestSchema):
-            prompt = f"Generate a question for {request.designation} with {request.experience} experience in {request.techStack}. Give only the question."
+            prompt = f"Generate a question for {request.designation} with {request.experience} experience in {request.skills}. Give only the question."
         else:
             raise ValueError("Invalid request type for generating a question.")
     else:  # Assuming non-zero ID indicates analyzing an answer
