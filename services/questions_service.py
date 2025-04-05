@@ -21,9 +21,17 @@ async def fetchQuestion(request: FirstQuestionRequestSchema | QuestionRequestSch
             if not question_data:
                 raise ValueError("Question not found in the database.")
             question_data["score"] = score
+            question_data["answer"] = request.answer
             client.questionsDB.question.update_one({"qid": request.qid}, {"$set": question_data})
 
             # Generate a new question based on the previous answer
+            if id !=-1:
+                return QuestionResponseSchema(
+                    userID="",
+                    qid="",
+                    question="",
+                    answer=""
+                )
             prompt = f"Generate a new question based on this answer - {request.answer} with corresponding question - {request.question}. Give only the question."
         else:
             raise ValueError("Invalid request type for analyzing an answer.")
