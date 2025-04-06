@@ -15,7 +15,7 @@ async def fetchQuestion(request: FirstQuestionRequestSchema | QuestionRequestSch
     else:  # Assuming non-zero ID indicates analyzing an answer
         if isinstance(request, QuestionRequestSchema):
             # Save the answer to the database with score
-            prompt = f"Analyze this answer given by user - {request.answer} with corresponding question - {request.question}. Then score the answer on a scale of 0 to 10. Give only the score."
+            prompt = f"Analyze this answer given by user - {request.answer} with corresponding question - {request.question}. Then score the answer on a scale of 0 to 10. If the answer is null/blank or does not matches the question context then mark score 0. Return only the score."
             score = float(generate(prompt))
             question_data = client.questionsDB.question.find_one({"qid": request.qid})
             if not question_data:
@@ -56,3 +56,12 @@ async def fetchQuestion(request: FirstQuestionRequestSchema | QuestionRequestSch
         question=question.question,
         answer=question.answer
     )
+
+async def fetchUserReport(userID: str) -> list[Question]:
+    # Fetch all questions for the given userID
+    questions = client.questionsDB.question.find({"userID": userID})
+    
+    # Convert to list of QuestionResponseSchema
+    question_list = [Question(**question) for question in questions]
+    
+    return question_list

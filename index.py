@@ -13,7 +13,7 @@ app = FastAPI(
 
 # Routes
 app.include_router(notes.router, prefix="/api/v1/notes", tags=["notes"])
-app.include_router(questions.router, prefix="/api/v1/questions", tags=["questions"])
+app.include_router(questions.router, prefix="/api/v1/test", tags=["questions"])
 
 if __name__ == "__main__":
     import uvicorn
