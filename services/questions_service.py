@@ -25,7 +25,7 @@ async def fetchQuestion(request: FirstQuestionRequestSchema | QuestionRequestSch
             client.questionsDB.question.update_one({"qid": request.qid}, {"$set": question_data})
 
             # Generate a new question based on the previous answer
-            if id !=-1:
+            if id ==-1:
                 return QuestionResponseSchema(
                     userID="",
                     qid="",
